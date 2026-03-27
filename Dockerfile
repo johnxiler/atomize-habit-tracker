@@ -9,6 +9,8 @@ COPY . .
 
 # Build the backend
 WORKDIR /usr/src/app/backend
+# Fix for home@0.5.12 requiring rustc 1.88
+RUN cargo update -p home --precise 0.5.11
 RUN cargo build --release
 
 # Runner stage
