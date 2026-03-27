@@ -1,0 +1,19 @@
+{
+  "habits": [
+    {
+      "id": 1,
+      "title": "Read documentation of rust",
+      "color": "#f9eafe",
+      "frequency": "daily",
+      "created_at": "2026-03-27"
+    }
+  ],
+  "logs": [
+    {
+      "habit_id": 1,
+      "date": "2026-03-27",
+      "completed": true
+    }
+  ],
+  "next_id": 2
+}

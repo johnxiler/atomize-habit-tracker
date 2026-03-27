@@ -1,0 +1,27 @@
+CREATE TABLE IF NOT EXISTS habits (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL,
+  color TEXT NOT NULL DEFAULT '#cadbfc',
+  frequency TEXT NOT NULL DEFAULT 'daily',
+  difficulty INTEGER NOT NULL DEFAULT 1,
+  category TEXT NOT NULL DEFAULT 'general',
+  created_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS habit_logs (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  habit_id INTEGER NOT NULL,
+  date TEXT NOT NULL,
+  completed INTEGER NOT NULL DEFAULT 1,
+  FOREIGN KEY (habit_id) REFERENCES habits(id) ON DELETE CASCADE,
+  UNIQUE(habit_id, date)
+);
+
+CREATE TABLE IF NOT EXISTS reflections (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    habit_id INTEGER NOT NULL,
+    date TEXT NOT NULL,
+    content TEXT NOT NULL,
+    FOREIGN KEY(habit_id) REFERENCES habits(id) ON DELETE CASCADE,
+    UNIQUE(habit_id, date)
+);
