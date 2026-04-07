@@ -2,7 +2,7 @@ import { Platform } from 'react-native';
 import Constants from 'expo-constants';
 
 // REPLACE THIS with your Render URL after deployment (e.g., https://atomize-backend.onrender.com)
-const PRODUCTION_URL = '';
+const PRODUCTION_URL = 'https://atomize-habit-tracker.onrender.com';
 
 const getApiBase = () => {
   if (PRODUCTION_URL) return PRODUCTION_URL;

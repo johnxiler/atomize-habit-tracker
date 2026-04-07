@@ -6,7 +6,16 @@ pub type Db = Pool<Any>;
 
 pub async fn init_db() -> Db {
     sqlx::any::install_default_drivers();
-    let database_url = std::env::var("DATABASE_URL").unwrap_or_else(|_| "sqlite://../database/atomize.db".to_string());
+    let mut database_url = std::env::var("DATABASE_URL").unwrap_or_else(|_| "sqlite://../database/atomize.db".to_string());
+    
+    // Auto-fix for Render PostgreSQL (requires SSL)
+    if database_url.starts_with("postgres") && !database_url.contains("sslmode=") {
+        if database_url.contains('?') {
+            database_url.push_str("&sslmode=require");
+        } else {
+            database_url.push_str("?sslmode=require");
+        }
+    }
     
     let options = AnyConnectOptions::from_str(&database_url)
         .expect("Invalid DATABASE_URL");
